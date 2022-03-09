@@ -1,13 +1,16 @@
-# Define your item pipelines here
-#
-# Don't forget to add your pipeline to the ITEM_PIPELINES setting
-# See: https://docs.scrapy.org/en/latest/topics/item-pipeline.html
+# from itemadapter import ItemAdapter
 
 
-# useful for handling different item types with a single interface
-from itemadapter import ItemAdapter
+class NoticiasPipeline(object):
 
-
-class NoticiasPipeline:
     def process_item(self, item, spider):
+
+        # Tratamento do Texto: retirando os caracteres '\n' e os espaços em branco!
+        item['text'] = item['text'].replace('\n', '')
+        item['text'] = item['text'].replace('  ', '')
+
+        # Tratamento do Time: retirando os caracteres '\n' e os espaços em branco!
+        item['time'] = item['time'].replace('\n', '')
+        item['time'] = item['time'].replace('  ', '')
+
         return item
