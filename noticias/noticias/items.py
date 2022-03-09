@@ -14,3 +14,4 @@ class NoticiasItem(scrapy.Item):
     link = scrapy.Field()
     time = scrapy.Field()
     tags = scrapy.Field()
+    quantTags = scrapy.Field()

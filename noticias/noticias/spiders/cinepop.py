@@ -12,17 +12,32 @@ class CinepopSpider(scrapy.Spider):
 
             yield response.follow(link, self.parse_article)
 
+
     def parse_article(self, response):
 
         title = response.css("h1.entry-title::text").get()
         author = response.css("div.td-post-author-name a::text").get()
         date = response.css("span.td-post-date time::text").get()
-        text = "".join(response.css("div.td-post-content.tagdiv-type p::text").getall())
+
+        preText = response.css("div.td-post-content.tagdiv-type p::text").getall()
+        text = "".join(preText)
         link = response.url
-        time = ""
         tags = response.css("div.td-post-source-tags li a::text").getall()
 
-        dados = NoticiasItem(title=title, author=author, date=date, text=text, link=link, time=time, tags=tags)
+        # Métricas
+        quantTags = len(tags)
+        time = str(self.tempoDeLeitura(preText)) + " min de leitura"
+
+        dados = NoticiasItem(title=title, author=author, date=date, text=text, link=link, time=time, tags=tags, quantTags=quantTags)
         yield dados
 
 
+    def tempoDeLeitura(self, palavras):
+        # Estipula-se que o tempo medio para leitura de cada palavra é em torno de 0.39 s
+        # Portanto:
+
+        quantPalavras = len(palavras)
+        tempoSegundos = float(quantPalavras * 0.39)
+        tempoMinutos = int(tempoSegundos / 2.0)
+
+        return tempoMinutos
