@@ -20,9 +20,12 @@ class OmeleteSpider(scrapy.Spider):
         link = response.url
         time = response.css("div.reading-time__text::text").get()
         tags = ""
-        quantTags = self.contTags(title, response)
 
-        dados = NoticiasItem(title=title, author=author, date=date, text=text, link=link, time=time, tags=tags, quantTags=quantTags)
+        # Métricas
+        quantTags = self.contTags(title, response)
+        references = len(response.css("a::attr(href)").getall())
+
+        dados = NoticiasItem(title=title, author=author, date=date, text=text, link=link, time=time, tags=tags, quantTags=quantTags, references=references)
         yield dados
 
     def contTags(self, title, response):

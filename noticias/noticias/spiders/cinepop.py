@@ -25,8 +25,9 @@ class CinepopSpider(scrapy.Spider):
         # Métricas
         quantTags = len(tags)
         time = str(self.tempoDeLeitura(text)) + " min de leitura"
+        references = len(response.css("a::attr(href)").getall())
 
-        dados = NoticiasItem(title=title, author=author, date=date, text=text, link=link, time=time, tags=tags, quantTags=quantTags)
+        dados = NoticiasItem(title=title, author=author, date=date, text=text, link=link, time=time, tags=tags, quantTags=quantTags, references=references)
         yield dados
 
 

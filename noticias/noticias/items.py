@@ -15,3 +15,4 @@ class NoticiasItem(scrapy.Item):
     time = scrapy.Field()
     tags = scrapy.Field()
     quantTags = scrapy.Field()
+    references = scrapy.Field()
