@@ -20,7 +20,18 @@ class OmeleteSpider(scrapy.Spider):
         link = response.url
         time = response.css("div.reading-time__text::text").get()
         tags = ""
+        quantTags = self.contTags(title, response)
 
-        dados = NoticiasItem(title=title, author=author, date=date, text=text, link=link, time=time, tags=tags)
+        dados = NoticiasItem(title=title, author=author, date=date, text=text, link=link, time=time, tags=tags, quantTags=quantTags)
         yield dados
 
+    def contTags(self, title, response):
+
+        palavrasTitle = title.split()
+
+        subTitle = response.css("h2.subtitle::text").get()
+        palavrasSubTitle = subTitle.split()
+
+        quantTags = int((len(palavrasTitle) + len(palavrasSubTitle)) / 3)
+
+        return quantTags
