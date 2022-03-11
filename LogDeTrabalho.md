@@ -24,6 +24,7 @@ Escrevi o README.md.
 
 Os dados coletados podem ser salvos em banco de dados.
 
-As spiders podem passar por mais páginas e coletar dados de mais artigos. 
+As spiders podem passar por mais páginas e coletar dados de mais artigos.
+Mesmo que a página com os artigos seja do tipo scroll infinito, é possível rastrear a request URL e obter os novos dados.
 
 Com a informação coletada 'references'(quantidade de referências para outras páginas presente no artigo) a importância/relevância do artigo, ou do portal como um todo, pode ser ranqueada.
