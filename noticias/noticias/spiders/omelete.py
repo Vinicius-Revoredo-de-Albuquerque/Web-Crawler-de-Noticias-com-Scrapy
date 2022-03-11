@@ -7,7 +7,7 @@ class OmeleteSpider(scrapy.Spider):
     start_urls = ['http://www.omelete.com.br/']
 
     def parse(self, response):
-        for link in response.css("main.c-newslist article div a::attr(href)").getall():
+        for link in response.css("main.c-newslist article div.featured__head a::attr(href)").getall():
 
             yield response.follow(link, self.parse_article)
 
