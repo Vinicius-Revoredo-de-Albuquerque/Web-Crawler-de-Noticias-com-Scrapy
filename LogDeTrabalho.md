@@ -22,8 +22,8 @@ Escrevi o README.md.
 
 # Escalando a Solução
 
-crawling em mais paginas
+Os dados coletados podem ser salvos em banco de dados.
 
-uso de banco de dados para guardar os dados
+As spiders podem passar por mais páginas e coletar dados de mais artigos. 
 
-exemplo de analises que poderiam ser feitas, se tiver
+Com a informação coletada 'references'(quantidade de referências para outras páginas presente no artigo) a importância/relevância do artigo, ou do portal como um todo, pode ser ranqueada.
